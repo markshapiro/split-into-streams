@@ -10,7 +10,7 @@ const rs = new SplitStream(readableStream, {
   explicitRead: false,  // set as non explicit
   splitAt: '\n',        // split at newline
 })
-rs.on('data',  stream => {
+rs.on('data', stream => {
   // this stream will end at next line break (including delimiter)
   stream.on("data", data => { ... })
 });
@@ -33,12 +33,12 @@ NOTE: this method will automatically pause the given stream on creation, and res
 #### explicitRead
 default: false
 
-to specify one of two ways above
+To specify one of two ways above
 
 #### splitAt / or as argument to `readUntil()`
 mandatory field
 
-the delimiter value that should separate streams, can be string, regex, array of numbers or function that returns point of separation.
+The delimiter value that should separate streams, can be string, regex, array of numbers or function that returns point of separation.
 - when string, will separate at place where toString() values of bytes in buffer match the string.
 - when regex, will separate at place where toString() values of bytes in buffer match the regex.
 - when array of numbers, will spearate at place where bytes match the values.
@@ -56,3 +56,5 @@ to separate before the delimiter, simply decrease the index of separation with l
 #### maxPrevMemory
 default: 30
 
+Sometimes long delimiters can be located between 2 chunks of data that are read internally, in order to consider these the library doesn't push the entire chunk into substream after its read from main stream, but rather leaves out some bytes at the end, to be pushed before next chunk. The length of that ending is defined by `maxPrevMemory`.
+<br/>Use this if you are dealing with fairly long delimiters and set it to be the max possible length of your delimiter.
