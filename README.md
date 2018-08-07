@@ -1,8 +1,7 @@
 # split-into-streams
 
-Split a stream into multiple streams by defining flexible delimiter or a delimiting function that returns index of separation, given a chunk of next read data.
-<br/>Each new resulting substream starts when previous ends.
-<br/>There are 2 ways to do this: stream of streams or explicit function that receives delimiter of where the stream ends.
+Split a stream into multiple streams by defining flexible delimiter or a delimiting function that returns index of separation, given a chunk of next read data, Each new resulting substream starts when previous ends.
+<br/>There are 2 methods: stream of streams or explicit function that receives delimiter of where the stream ends.
 
 ### First way: (stream of streams)
 
@@ -27,3 +26,4 @@ const stream = await rs.readUntil('\n');
 // receives stream will end at next line break (including delimiter)
 stream.on("data", data => { ... })
 ```
+NOTE: this method will automatically pause the given stream on creation, and resume & pause when reading each next chunk, this will prevent the stream to get lost for example when we read stdout of spawn process, and instead will force the main stream to stay until everything is read
