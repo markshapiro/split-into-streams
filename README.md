@@ -50,7 +50,7 @@ example: to separate after line break, you can pass `'\n'`, `/\n/`, `[10]`, or p
 ```
 to separate before the delimiter, simply decrease the index of separation with length of delimiter:
 ```js
-(nextChunkData) => nextChunkData.toString().indexOf('\n') - 1
+(nextChunkData) => nextChunkData.toString().indexOf('\n') - '\n'.length
 ```
 
 #### maxPrevMemory
