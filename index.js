@@ -83,8 +83,8 @@ class SplitStream extends Readable{
           this.flushSplitted(separatorIndex)
         } else if (!this.finalizing){
           // flush everything except last maxPrevMemory bytes so that in next iteration, the 'getIndexOfSplit' will be
-          // called on chunk of data prepended by maxPrevMemory of last chunk, to consider the delimiter in case when it 
-          // lays between of 2 chunks that are being read, assuming delimiter length is shorter than maxPrevMemory.
+          // called on chunk of data prepended by maxPrevMemory bytes of last chunk, to consider the delimiter in case when
+          // it lays between of 2 chunks that are being read, assuming delimiter length is shorter than maxPrevMemory.
           this.flushExcept(this.maxPrevMemory);
         } else{
           // if in final stage, flush everything
