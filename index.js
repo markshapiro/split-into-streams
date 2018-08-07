@@ -131,7 +131,7 @@ class SplitStream extends Readable{
               }
             }
             if(valid){
-              return i + splitAt.length-1;
+              return i + splitAt.length - 1;
             }
           }
           return -1;
@@ -141,10 +141,10 @@ class SplitStream extends Readable{
       } else if( splitAt.constructor.name === "RegExp" ){
         this.getIndexOfSplit = data => {
           const result = data.toString().match(splitAt)
-          return result ? result.index + result[0].length : -1;
+          return result ? result.index + result[0].length - 1  : -1;
         };
       } else if( typeof splitAt === 'string' ){
-        this.getIndexOfSplit = data => data.toString().indexOf(splitAt)+splitAt.length;
+        this.getIndexOfSplit = data => data.toString().indexOf(splitAt)+splitAt.length - 1;
       }
     }
 
