@@ -9,7 +9,7 @@ function splitBuffer(buffer, index){
   return { first, second};
 }
 
-const MAX_PREV_MEMORY = 10;
+const MAX_PREV_MEMORY = 30;
 
 class SplitStream extends Readable{
 
@@ -23,7 +23,7 @@ class SplitStream extends Readable{
       this.togglePause(true);
 
       this.readableStream.on('end', () => {
-        this.finalFlush = true;
+        this.finalizing = true;
         this.readNextIntoStream();
       });
 
@@ -44,7 +44,7 @@ class SplitStream extends Readable{
       const oldPause = nextLast.pause.bind(nextLast);
       const oldResume = nextLast.resume.bind(nextLast);
 
-      /* pausing every substream will automatically pause the whole stream */
+      // pausing every substream will automatically pause the whole stream
       nextLast.pause = ()=>{ oldPause(); this.pause(); };
       nextLast.resume = ()=>{ oldResume(); this.resume(); };
 
@@ -73,16 +73,21 @@ class SplitStream extends Readable{
     }
 
     readNextIntoStream() {
-      if(this.finalFlush && this.buffer.length === 0){
-        this.finalize();
+      if(this.finalizing && this.buffer.length === 0){
+        this.finalize();  //if in final stage and nothing more to flush, close streams
       }
-      else if(this.buffer.length > this.maxPrevMemory || this.finalFlush){
+      else if(this.buffer.length > this.maxPrevMemory || this.finalizing){
+        // find index to split the buffer
         const separatorIndex = this.getIndexOfSplit(this.buffer);
         if(separatorIndex >= 0){
           this.flushSplitted(separatorIndex)
-        } else if (!this.finalFlush){
+        } else if (!this.finalizing){
+          // flush everything except last maxPrevMemory bytes so that the 'getIndexOfSplit' will consider
+          // previous maxPrevMemory bytes when delimiter is located between 2 chunks,
+          // assuming delimiter length is shorter than maxPrevMemory
           this.flushExcept(this.maxPrevMemory);
         } else{
+          // if in final stage, flush everything
           this.flushExcept(0);
         }
       } else {
@@ -113,6 +118,7 @@ class SplitStream extends Readable{
       })
     }
 
+    // create a common method to get index of split from all possible delimiters (String/Regex/Array<number>)
     createIndexOfSplitMethod(splitAt){
       if(Array.isArray(splitAt)){
         this.getIndexOfSplit = (data)=>{
@@ -153,8 +159,8 @@ class SplitStream extends Readable{
       this.createLastStream();
       this.readNextIntoStream();
 
-      return new Promise((resolve, reject)=>{
-        this.last.once('readable', ()=>{
+      return new Promise(resolve => {
+        this.last.once('readable', () => {
           if(this.last._readableState.length){
             return resolve(this.last);
           }
