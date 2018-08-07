@@ -1,0 +1,23 @@
+{
+  "name": "split-into-streams",
+  "version": "0.0.1",
+  "description": "Split stream into multiple streams by defining flexible separation rules",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markshapiro/node-split-to-streams.git"
+  },
+  "keywords": [
+    "stream",
+    "split",
+    "delimiter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markshapiro/node-split-to-streams/issues"
+  },
+  "homepage": "https://github.com/markshapiro/node-split-to-streams#readme",
+  "devDependencies": {}
+}
