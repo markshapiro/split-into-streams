@@ -8,15 +8,21 @@ const child = spawn('pdftoppm', `-r 40 -f 1 -l 5 -jpeg -`.split(' ') );
 
 file.pipe(child.stdin)
 
-const rs = new SplitStream(child.stdout, {
-	explicitRead: false,
-	splitAt: [255, 217],	 // 255, 217 is ending of jpeg
-})
+const rs = new SplitStream(child.stdout, { explicitRead: true })
+
+run(rs)
+
 let i=0;
-rs.on('data', stream=>{
+
+async function run(rs){
+  const stream = await rs.readUntil([255, 217]);  // 255, 217 is ending of jpeg
+  if(!stream){
+    console.log("Finished")
+    return;
+  }
   const ws = createWriteStream(`./img${i++}.jpeg`)
   stream.pipe(ws)
-});
-rs.on('end', ()=>{
-  console.log("Finished")
-});
+  stream.on("end", ()=>{
+    run(rs)
+  });
+}
