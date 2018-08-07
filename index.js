@@ -144,7 +144,13 @@ class SplitStream extends Readable{
           return result ? result.index + result[0].length - 1  : -1;
         };
       } else if( typeof splitAt === 'string' ){
-        this.getIndexOfSplit = data => data.toString().indexOf(splitAt) + splitAt.length - 1;
+        this.getIndexOfSplit = data => {
+          const index = data.toString().indexOf(splitAt);
+          if(index >= 0){
+            return index + splitAt.length - 1
+          }
+          return -1;
+        };
       }
     }
 
