@@ -56,5 +56,5 @@ to separate before the delimiter, simply decrease the index of separation with l
 #### maxPrevMemory
 default: 30
 
-Sometimes long delimiters can start at end of one chunk (that is being read internally) and end at start of next, in order to consider these the library doesn't push the entire chunk into substream after its read from main stream, but rather leaves out some bytes at the end, to be pushed before next chunk. The length of that ending is defined by `maxPrevMemory`.
+Sometimes long delimiters can begin at end of one chunk (that is read internally) and end at start of next, in order to consider these the library doesn't push the entire chunk into substream after its read from main stream, but rather leaves out some bytes at the end, to be pushed before next chunk. The length of that ending is defined by `maxPrevMemory`.
 <br/>Use this if you are dealing with fairly long delimiters and set it to be the max possible length of your delimiter.
