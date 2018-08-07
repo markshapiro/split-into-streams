@@ -35,7 +35,7 @@ default: false
 
 to specify one of two ways above
 
-#### splitAt / or as argument of `readUntil()`
+#### splitAt / or as argument to `readUntil()`
 mandatory field
 
 the delimiter value that should separate streams, can be string, regex, array of numbers or function that returns point of separation.
@@ -48,8 +48,11 @@ example: to separate after line break, you can pass `'\n'`, `/\n/`, `[10]`, or p
 ```js
 (nextChunkData) => nextChunkData.toString().indexOf('\n')
 ```
-to separate before the delimiter, simply decrease the index offset:
+to separate before the delimiter, simply decrease the index of separation with length of delimiter:
 ```js
 (nextChunkData) => nextChunkData.toString().indexOf('\n') - 1
 ```
+
+#### maxPrevMemory
+default: 30
 
