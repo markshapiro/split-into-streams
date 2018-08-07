@@ -15,7 +15,7 @@ class SplitStream extends Readable{
 
     constructor(readableStream, opts){
       super({ ...opts, objectMode: !opts.explicitRead });
-      this.explicitRead = opts.explicitRead;
+      this.explicitRead = opts.explicitRead || false;
       this.maxPrevMemory = opts.maxPrevMemory || MAX_PREV_MEMORY;
       this.splitAt = opts.splitAt;
       this.buffer = Buffer.alloc(0);
