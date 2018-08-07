@@ -43,7 +43,8 @@ the delimiter value that should separate streams, can be string, regex, array of
 - when regex, will separate at place where toString() values of bytes in buffer match the regex.
 - when array of numbers, will spearate at place where bytes match the values.
 - when function, will call that function on chunk of data and expect an index of separation to be returned.
-<br/>example: to separate after line break, you can pass `'\n'`, `/\n/`, `[10]`, or provide function:
+
+example: to separate after line break, you can pass `'\n'`, `/\n/`, `[10]`, or provide function:
 ```js
 (nextChunkData) => nextChunkData.toString().indexOf('\n')
 ```
