@@ -1,4 +1,4 @@
-# graphql-db-projection
+# split-into-streams
 
 Split a stream into multiple streams by defining flexible delimiter of delimiting function that returns index of separation.
 <br/>Each new resulting substream starts when previous ends.
