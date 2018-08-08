@@ -5,7 +5,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markshapiro/node-split-to-streams.git"
+    "url": "git+https://github.com/markshapiro/split-into-streams.git"
   },
   "keywords": [
     "stream",
@@ -15,8 +15,8 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/markshapiro/node-split-to-streams/issues"
+    "url": "https://github.com/markshapiro/split-into-streams/issues"
   },
-  "homepage": "https://github.com/markshapiro/node-split-to-streams#readme",
+  "homepage": "https://github.com/markshapiro/split-into-streams#readme",
   "devDependencies": {}
 }
