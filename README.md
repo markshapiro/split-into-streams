@@ -40,7 +40,7 @@ const stream = await rs.readUntil('\n');
 // received stream will end at next line break (including delimiter)
 stream.on("data", data => { ... })
 ```
-With this method you can easily provide different delimiter to each `readUntil()`.
+With this method you can also provide different delimiter to each `readUntil()`.
 
 NOTE: this method will automatically pause the given stream on creation, and resume & pause when reading each next chunk, this  will force the main stream to stay until everything is read when we read from stdout of spawn process for example.
 
