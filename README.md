@@ -68,7 +68,7 @@ to separate before the delimiter, simply decrease the index of separation with l
 ```js
 splitAt: (nextChunkData) => nextChunkData.toString().indexOf('\n') - '\n'.length
 ```
-to split next stream by different delimiter than the first, you can make counter inside this function and provide different implementation on second call, return -1 if you dont want to split yet and continue the current substream.
+to split next stream by different delimiter than the first, you can make counter inside this function and provide different implementation on second call, return -1 if you dont want to split yet and continue passing chunks to currently read substream.
 
 #### maxPrevMemory
 default: 30
