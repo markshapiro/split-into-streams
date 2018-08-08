@@ -60,13 +60,13 @@ The delimiter value that should separate streams, can be string, regex, array of
 - when array of numbers, will spearate at place where bytes match the values.
 - when function, will call that function on chunk of data and expect an index of separation to be returned.
 
-example: to separate after line break, you can pass `'\n'`, `/\n/`, `[10]`, or provide function:
+example: to separate immediately after line break, you can pass `'\n'`, `/\n/`, `[10]`, or provide function:
 ```js
 splitAt: nextChunkData => nextChunkData.toString().indexOf('\n')
 ```
-to separate before the delimiter, simply decrease the index of separation with length of delimiter:
+to separate before the delimiter, simply decrease by 1 position:
 ```js
-splitAt: nextChunkData => nextChunkData.toString().indexOf('\n') - '\n'.length
+splitAt: nextChunkData => nextChunkData.toString().indexOf('\n') - 1
 ```
 to split next stream by different delimiter than the first, you can make counter inside this function and provide different implementation on second call, return -1 if you dont want to split yet and continue passing chunks to currently read substream.
 
