@@ -17,6 +17,7 @@ $ npm i split-into-streams
 
 ```js
 const SplitStream = require('split-into-streams');
+
 const rs = new SplitStream(readableStream, {
   explicitRead: false,  // set as non explicit
   splitAt: '\n',        // split at newline
@@ -31,6 +32,7 @@ rs.on('data', stream => {
 
 ```js
 const SplitStream = require('split-into-streams');
+
 const rs = new SplitStream(readableStream, {
   explicitRead: true,   // set as explicit
 })
