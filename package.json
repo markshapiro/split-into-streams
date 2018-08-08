@@ -1,6 +1,6 @@
 {
   "name": "split-into-streams",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Split stream into multiple streams by defining flexible delimiter",
   "scripts": {},
   "repository": {
