@@ -62,13 +62,13 @@ The delimiter value that should separate streams, can be string, regex, array of
 
 example: to separate after line break, you can pass `'\n'`, `/\n/`, `[10]`, or provide function:
 ```js
-(nextChunkData) => nextChunkData.toString().indexOf('\n')
+splitAt: (nextChunkData) => nextChunkData.toString().indexOf('\n')
 ```
 to separate before the delimiter, simply decrease the index of separation with length of delimiter:
 ```js
-(nextChunkData) => nextChunkData.toString().indexOf('\n') - '\n'.length
+splitAt: (nextChunkData) => nextChunkData.toString().indexOf('\n') - '\n'.length
 ```
-to split next stream by different delimiter than the first, you can make counter inside this function and provide different implementation on second call, you can also return -1 if you just want to peek at the data without splitting.
+to split next stream by different delimiter than the first, you can make counter inside this function and provide different implementation on second call, return -1 if you dont want to split yet and continue the current substream.
 
 #### maxPrevMemory
 default: 30
