@@ -34,20 +34,9 @@ class SplitStream extends Readable{
 
     _read(){}
 
-    pause(){ super.pause(); this.readableStream.pause(); }
-    resume(){ super.resume(); this.readableStream.resume(); }
-
     createLastStream() {
       const nextLast = new Readable()
       nextLast._read = ()=>{};
-
-      const oldPause = nextLast.pause.bind(nextLast);
-      const oldResume = nextLast.resume.bind(nextLast);
-
-      // pausing every substream will automatically pause the whole stream
-      nextLast.pause = ()=>{ oldPause(); this.pause(); };
-      nextLast.resume = ()=>{ oldResume(); this.resume(); };
-
       this.last = nextLast;
     }
 
