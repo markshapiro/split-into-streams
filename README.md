@@ -3,9 +3,20 @@
 Split a stream into multiple streams by defining flexible delimiter or a delimiting function that returns index of separation, given a chunk of next read data, Each new resulting substream starts when the reading of previous is finished.
 <br/>There are 2 methods: stream of streams or explicit function that receives delimiter of where the stream ends.
 
+## Installation
+
+```bash
+$ yarn add split-into-streams
+```
+
+```bash
+$ npm i split-into-streams
+```
+
 ### First way: (stream of streams)
 
 ```js
+const SplitStream = require('split-into-streams');
 const rs = new SplitStream(readableStream, {
   explicitRead: false,  // set as non explicit
   splitAt: '\n',        // split at newline
@@ -19,6 +30,7 @@ rs.on('data', stream => {
 ### Second way: (explicit function)
 
 ```js
+const SplitStream = require('split-into-streams');
 const rs = new SplitStream(readableStream, {
   explicitRead: true,   // set as explicit
 })
