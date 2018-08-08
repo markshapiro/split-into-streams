@@ -1,9 +1,8 @@
 {
   "name": "split-into-streams",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Split stream into multiple streams by defining flexible delimiter",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/markshapiro/node-split-to-streams.git"
