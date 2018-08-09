@@ -24,7 +24,7 @@ const rs = new SplitStream(readableStream, {
   splitAt: '\n',        // split at newline
 })
 rs.on('data', stream => {
-  // this stream will end at next line break (including delimiter)
+  // this stream will end after next line break
   stream.on("data", data => { ... })
 });
 ```
