@@ -1,6 +1,7 @@
 # split-into-streams
 
-Split a stream into multiple streams by defining flexible delimiter or a delimiting function that returns index of separation. Each new resulting substream starts when the reading of previous is finished.
+Split a stream into multiple streams by defining flexible delimiter or a delimiting function that returns index of separation.
+<br/>Each new resulting substream starts when the reading of previous is finished.
 <br/>There are 2 methods: stream of streams or explicit function that receives delimiter of where the stream ends.
 
 ## Installation
