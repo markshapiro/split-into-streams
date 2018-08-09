@@ -38,7 +38,7 @@ const rs = new SplitStream(readableStream, {
   explicitRead: true,   // set as explicit
 })
 const stream = await rs.readUntil('\n');
-// received stream will end at next line break (including delimiter)
+// received stream will end after next line break
 stream.on("data", data => { ... })
 ```
 with this method you can also provide different delimiter to each next `readUntil()`.
