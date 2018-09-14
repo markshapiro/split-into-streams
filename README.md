@@ -25,7 +25,7 @@ const rs = new SplitStream(readableStream, {
 })
 rs.on('data', stream => {
   // this stream will end after next line break
-  stream.on("data", data => { ... })
+  stream.on('data', data => { ... })
 });
 ```
 
@@ -39,7 +39,7 @@ const rs = new SplitStream(readableStream, {
 })
 const stream = await rs.readUntil('\n');
 // received stream will end after next line break
-stream.on("data", data => { ... })
+stream.on('data', data => { ... })
 ```
 with this method you can also provide different delimiter to each next `readUntil()`.
 
